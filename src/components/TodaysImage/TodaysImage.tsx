@@ -6,7 +6,7 @@ import { PostImage } from "../../types";
 export const TodaysImageView: FC<PostImage> = ({ date, title, url }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
+      <View>
         <Image source={{ uri: url }} style={styles.image} />
       </View>
       <Text style={styles.title}>{title}</Text>
@@ -15,19 +15,27 @@ export const TodaysImageView: FC<PostImage> = ({ date, title, url }) => {
       <TouchableOpacity style={styles.btnContainer}>
         <Text style={styles.btn}>View</Text>
       </TouchableOpacity>
+      {/* <View style={styles.btnbtn}>
+        <Button title="View" />
+      </View> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  btnbtn: {
+    width: "100%",
+    marginVertical: 20,
+    alignItems: "flex-end",
+  },
   container: {
-    backgroundColor: "#2c449d",
+    backgroundColor: "rgb(7, 112, 221)",
     marginVertical: 16,
     borderRadius: 32,
     padding: 16,
     marginHorizontal: 24,
   },
-  imageContainer: {},
+
   image: {
     width: "100%",
     height: 190,

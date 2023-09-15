@@ -1,0 +1,1 @@
+export { LastFiveDaysImages } from "./LastFiveDaysImages";

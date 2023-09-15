@@ -6,7 +6,7 @@ export default async (urlParams?: string) => {
     const response = await fetch(
       `${API_URL}?api_key=${API_KEY}${
         typeof urlParams !== "undefined" && urlParams.length > 0 ? urlParams : ""
-      }&count=1` /* &count=1 */
+      }` /* &count=1 */
     );
     const data = await response.json();
 
