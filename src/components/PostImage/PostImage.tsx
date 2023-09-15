@@ -1,8 +1,19 @@
 import React, { FC } from "react";
 import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
-import { PostImage as PostImageTypes } from "../../types";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export const PostImage: FC<PostImageTypes> = ({ title, date }) => {
+import { PostImage as PostImageTypes, RootStackParams } from "../../types";
+
+type PostImageNavigationProps = NativeStackNavigationProp<RootStackParams, "Detail">;
+
+export const PostImage: FC<PostImageTypes> = ({ title, date, url, explanation }) => {
+  const { navigate } = useNavigation<PostImageNavigationProps>();
+
+  const handleViewPress = () => {
+    navigate("Detail", { title, date, url, explanation });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -10,20 +21,8 @@ export const PostImage: FC<PostImageTypes> = ({ title, date }) => {
       {/* <View>
         <Button title="View" color={"rgb(45, 100, 180)"} />
       </View> */}
-      <View style={styles.btnContainer}>
-        <TouchableOpacity
-          style={[
-            styles.square,
-            {
-              shadowOffset: {
-                width: 10,
-                height: 10,
-              },
-              shadowOpacity: 3,
-              shadowRadius: 4,
-            },
-          ]}
-        >
+      <View>
+        <TouchableOpacity style={styles.btnContainer} onPress={handleViewPress}>
           <Text style={styles.btnText}>View</Text>
         </TouchableOpacity>
       </View>
@@ -37,6 +36,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginBottom: 12,
     padding: 16,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
   title: {
     color: "#fff",
@@ -57,6 +65,15 @@ const styles = StyleSheet.create({
     padding: 8,
     backgroundColor: "rgb(45, 100, 210)",
     borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
   square: {
     shadowColor: "black",

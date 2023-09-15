@@ -1,10 +1,10 @@
 export type PostImage = {
-  map(
-    arg0: (
-      item: import("react").JSX.IntrinsicAttributes & PostImage,
-      index: import("react").Key
-    ) => import("react").JSX.Element
-  ): import("react").ReactNode;
+  // map(
+  //   arg0: (
+  //     item: import("react").JSX.IntrinsicAttributes & PostImage,
+  //     index: import("react").Key
+  //   ) => import("react").JSX.Element
+  // ): import("react").ReactNode;
   date?: string;
   explanation?: string;
   hdurl?: string;
@@ -16,5 +16,5 @@ export type PostImage = {
 
 export type RootStackParams = {
   Home: undefined;
-  Detail: undefined;
+  Detail: PostImage;
 };

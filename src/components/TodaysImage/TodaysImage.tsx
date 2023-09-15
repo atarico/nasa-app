@@ -1,9 +1,19 @@
 import React, { FC } from "react";
 import { View, Text, StyleSheet, Image, Button, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import { PostImage } from "../../types";
+import { PostImage, RootStackParams } from "../../types";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export const TodaysImageView: FC<PostImage> = ({ date, title, url }) => {
+type PostImageNavigationProps = NativeStackNavigationProp<RootStackParams, "Detail">;
+
+export const TodaysImageView: FC<PostImage> = ({ date, title, url, explanation }) => {
+  const { navigate } = useNavigation<PostImageNavigationProps>();
+
+  const handleViewPress = () => {
+    navigate("Detail", { title, date, url, explanation });
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -12,7 +22,7 @@ export const TodaysImageView: FC<PostImage> = ({ date, title, url }) => {
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.date}>{date}</Text>
 
-      <TouchableOpacity style={styles.btnContainer}>
+      <TouchableOpacity style={styles.btnContainer} onPress={handleViewPress}>
         <Text style={styles.btn}>View</Text>
       </TouchableOpacity>
       {/* <View style={styles.btnbtn}>
@@ -23,17 +33,21 @@ export const TodaysImageView: FC<PostImage> = ({ date, title, url }) => {
 };
 
 const styles = StyleSheet.create({
-  btnbtn: {
-    width: "100%",
-    marginVertical: 20,
-    alignItems: "flex-end",
-  },
   container: {
     backgroundColor: "rgb(7, 112, 221)",
     marginVertical: 16,
     borderRadius: 32,
     padding: 16,
     marginHorizontal: 24,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
 
   image: {

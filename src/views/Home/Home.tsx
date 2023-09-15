@@ -9,7 +9,7 @@ import { PostImage } from "../../types";
 import fetchAPI from "../../utils/fetch";
 
 export const Home = () => {
-  const [todaysImage, setTodaysImage] = useState<PostImage>([]);
+  const [todaysImage, setTodaysImage] = useState<PostImage>({});
   const [lastFiveDaysImages, setLastFiveDaysImages] = useState<PostImage[]>([]);
   useEffect(() => {
     const loadTodayImage = async () => {
@@ -18,7 +18,7 @@ export const Home = () => {
         setTodaysImage(todaysImageResponse);
       } catch (error) {
         console.error(error);
-        setTodaysImage([]);
+        setTodaysImage({});
       }
     };
 
